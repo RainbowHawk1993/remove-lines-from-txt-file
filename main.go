@@ -21,26 +21,26 @@ func main() {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-	//scanner.Split(bufio.ScanLines)
+	//scanner.Split(bufio.ScanLines)  	//doesn't see, like this does anything, but I'll keep it commented in case I'm forgetting what it's useful for
 
 	var bs []byte
 	buf := bytes.NewBuffer(bs)
 
-	var text string
 	for scanner.Scan() {
-		text = scanner.Text()
-		length := len(text)
-		if length > 3 {
+		//finding words longer than 2 that should be kept
+		if len(scanner.Text()) > 2 {
 			_, err := buf.Write(scanner.Bytes())
 			if err != nil {
 				exit("Couldn't write line")
 			}
-			_, err = buf.WriteString("aaaa")
+			//words that are shorter than 2 are to be removed
+			_, err = buf.WriteString("\n")
 			if err != nil {
 				exit("Couldn't replace line")
 			}
 		}
 	}
+	err = os.WriteFile(*txtFilename, buf.Bytes(), 0)
 }
 func exit(msg string) {
 	fmt.Println(msg)
