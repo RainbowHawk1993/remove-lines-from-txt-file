@@ -21,7 +21,7 @@ func main() {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-	//scanner.Split(bufio.ScanLines)  	//doesn't see, like this does anything, but I'll keep it commented in case I'm forgetting what it's useful for
+	//scanner.Split(bufio.ScanLines)  	//doesn't seem like this does anything, but I'll keep it around in case I'm forgetting what it's used for
 
 	var bs []byte
 	buf := bytes.NewBuffer(bs)
