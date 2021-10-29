@@ -40,7 +40,7 @@ func main() {
 			}
 		}
 	}
-	err = os.WriteFile(*txtFilename, buf.Bytes(), 0)
+	os.WriteFile(*txtFilename, buf.Bytes(), 0666)
 }
 func exit(msg string) {
 	fmt.Println(msg)
